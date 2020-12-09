@@ -42,6 +42,31 @@ class Appointments {
             });
         }
     }
+
+    findAll(res) {
+        const sql = 'SELECT * from tb_appointments';
+
+        connection.query(sql, (err, results) => {
+            if (err) {
+                res.status(400).json(err);
+            } else {
+                res.status(200).json(results);
+            }
+        });
+    }
+
+    findById(id, res) {
+        const sql = `SELECT * FROM tb_appointments ta WHERE ta.id = ${id}`;
+
+        connection.query(sql, (err, results) => {
+            const appointment = results[0];
+            if (err) {
+                res.status(400).json(err);
+            } else {
+                res.status(200).json(appointment);
+            }
+        });
+    }
 }
 
 module.exports = new Appointments();
