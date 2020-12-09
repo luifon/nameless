@@ -67,6 +67,33 @@ class Appointments {
             }
         });
     }
+
+    update(id, appointment, res) {
+        const sql = 'UPDATE tb_appointments SET ? WHERE id=?';
+        if (appointment.date) {
+            appointment.date = moment(appointment.date, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS');
+        }
+
+        connection.query(sql, [appointment, id], (err, results) => {
+            if (err) {
+                res.status(400).json(err);
+            } else {
+                res.status(200).json(results);
+            }
+        });
+    }
+
+    delete(id, res) {
+        const sql = 'DELETE FROM tb_appointments WHERE id = ?';
+
+        connection.query(sql, id, (err, results) => {
+            if (err) {
+                res.status(400).json(err);
+            } else {
+                res.status(200).json(results);
+            }
+        });
+    }
 }
 
 module.exports = new Appointments();
