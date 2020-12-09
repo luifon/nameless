@@ -5,7 +5,6 @@ module.exports = (app) => {
 
     app.post('/appointments', (req, res) => {
         const appointment = req.body;
-        appointments.create(appointment);
-        res.send('appointment created');
+        appointments.create(appointment, res);
     });
 };
