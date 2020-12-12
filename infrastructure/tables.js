@@ -2,6 +2,7 @@ class Tables {
     init(connection) {
         this.connection = connection;
         this.createAppointmentTable();
+        this.createPatientTable();
     }
 
     createAppointmentTable() {
@@ -22,6 +23,24 @@ class Tables {
                 console.log(err);
             } else {
                 console.log('appointment table successfully created');
+            }
+        });
+    }
+
+    createPatientTable() {
+        const sql =
+            'CREATE TABLE IF NOT EXISTS tb_clients (' +
+            'id INT NOT NULL AUTO_INCREMENT, ' +
+            'nome varchar(50) NOT NULL, ' +
+            'imagem text, ' +
+            'PRIMARY KEY(id)' +
+            ')';
+
+        this.connection.query(sql, (err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('client table was succesfully created');
             }
         });
     }
