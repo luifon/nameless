@@ -29,10 +29,10 @@ class Tables {
 
     createPatientTable() {
         const sql =
-            'CREATE TABLE IF NOT EXISTS tb_clients (' +
+            'CREATE TABLE IF NOT EXISTS tb_patients (' +
             'id INT NOT NULL AUTO_INCREMENT, ' +
-            'nome varchar(50) NOT NULL, ' +
-            'imagem text, ' +
+            'name varchar(50) NOT NULL, ' +
+            'image text, ' +
             'PRIMARY KEY(id)' +
             ')';
 
@@ -40,7 +40,7 @@ class Tables {
             if (err) {
                 console.log(err);
             } else {
-                console.log('client table was succesfully created');
+                console.log('patient table was succesfully created');
             }
         });
     }

@@ -1,5 +1,10 @@
 const fs = require('fs');
+const path = require('path');
 
-fs.createReadStream('./assets/home.jpeg')
-    .pipe(fs.createWriteStream('./assets/home-stream.jpeg'))
-    .on('finish', () => console.log('imagem escrita com sucesso'));
+module.exports = (filePath, fileName, imageCreatedCallback) => {
+    const type = path.extname(filePath);
+    const newPath = `./assets/images/${fileName}${type}`;
+    fs.createReadStream(filePath)
+        .pipe(fs.createWriteStream(newPath))
+        .on('finish', () => imageCreatedCallback(newPath));
+};
